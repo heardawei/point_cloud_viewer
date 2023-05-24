@@ -13,19 +13,8 @@ Linux平台前置条件:
 
 安装Linux开发者工具
 
-* Debian，Ubuntu，popOS 或其他基于 Debian 的发行版:
-
 ```bash
-$ sudo apt-get update
-$ sudo apt-get install build-essential tar curl zip unzip
-```
-
-* CentOS
-
-```bash
-$ sudo yum install centos-release-scl
-$ sudo yum install devtoolset-7
-$ scl enable devtoolset-7 bash
+sudo apt-get install tar curl zip unzip
 ```
 
 macOS 平台前置条件:
@@ -35,20 +24,20 @@ macOS 平台前置条件:
 安装macOS开发者工具
 
 ```bash
-$ xcode-select --install
+xcode-select --install
 ```
 
 安装vcpk
 
 ```bash
-$ git clone https://github.com/microsoft/vcpkg
-$ ./vcpkg/bootstrap-vcpkg.sh
+git clone https://github.com/microsoft/vcpkg
+./vcpkg/bootstrap-vcpkg.sh
 ```
 
 安装PCL、Qt库
 
 ```bash
-$ ./vcpkg/vcpkg install pcl[qt, visualization] --recurse
+./vcpkg/vcpkg install pcl[qt, visualization] --recurse
 ```
 
 #### Windows
@@ -62,14 +51,14 @@ $ ./vcpkg/vcpkg install pcl[qt, visualization] --recurse
 安装vcpk
 
 ```powershell
-> git clone https://github.com/microsoft/vcpkg
-> .\vcpkg\bootstrap-vcpkg.bat
+git clone https://github.com/microsoft/vcpkg
+.\vcpkg\bootstrap-vcpkg.bat
 ```
 
 安装PCL、Qt库
 
 ```powershell
-$ .\vcpkg\vcpkg install pcl[qt, visualization] --recurse --triplet=x64-windows
+.\vcpkg\vcpkg install pcl[qt, visualization] --recurse --triplet=x64-windows
 ```
 
 ### 在本项目中使用 vcpkg
@@ -78,7 +67,7 @@ $ .\vcpkg\vcpkg install pcl[qt, visualization] --recurse --triplet=x64-windows
 
 #### 使用`Visual Studio Code 中的 CMake Tools扩展` 编译本项目
 
-将以下内容添加到您的工作区的 settings.json 中将使 CMake Tools 自动使用 vcpkg 中的第三方库:
+将以下内容添加到您的工作区的 .vscode/settings.json 中将使 CMake Tools 自动使用 vcpkg 中的第三方库:
 
 ```json
 {
@@ -90,7 +79,7 @@ $ .\vcpkg\vcpkg install pcl[qt, visualization] --recurse --triplet=x64-windows
 
 #### 使用`Visual Studio`编译本项目
 
-打开 CMake 设置选项，将 vcpkg toolchain 文件路径在 CMake toolchain file 中：
+打开 CMake 设置选项，将 vcpkg toolchain 文件路径写在 CMake toolchain file 中：
 
 ```cmake
 [vcpkg root]/scripts/buildsystems/vcpkg.cmake
@@ -105,6 +94,13 @@ $ .\vcpkg\vcpkg install pcl[qt, visualization] --recurse --triplet=x64-windows
 ```
 
 您必须手动将此选项加入每个项目配置文件中。
+
+#### 使用命令行编译本项目
+
+```bash
+cmake -B [build directory] -S . "-DCMAKE_TOOLCHAIN_FILE=[vcpkg root]/scripts/buildsystems/vcpkg.cmake"
+cmake --build [build directory]
+```
 
 #### 将 vcpkg 作为一个子模块
 
