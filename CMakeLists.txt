@@ -1,4 +1,11 @@
-set(CMAKE_TOOLCHAIN_FILE "D:/vcpkg/scripts/buildsystems/vcpkg.cmake")
+# set(VCPKG_ROOT "D:/vcpkg")
+
+if(VCPKG_ROOT)
+    set(VCPKG_TOOLCHAIN_FILE "${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
+    if(EXISTS ${VCPKG_TOOLCHAIN_FILE})
+        set(CMAKE_TOOLCHAIN_FILE ${VCPKG_TOOLCHAIN_FILE})
+    endif()
+endif()
 
 cmake_minimum_required(VERSION 3.5)
 project(point_cloud_viewer VERSION 0.1 LANGUAGES CXX)
