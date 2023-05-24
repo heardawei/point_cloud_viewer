@@ -37,7 +37,7 @@ git clone https://github.com/microsoft/vcpkg
 安装PCL、Qt库
 
 ```bash
-./vcpkg/vcpkg install pcl[qt, visualization] --recurse
+./vcpkg/vcpkg install pcl[qt,visualization] --recurse
 ```
 
 #### Windows
