@@ -24,31 +24,17 @@ class PCLViewer : public QMainWindow
 
  public:
   explicit PCLViewer(QWidget *parent = 0);
-  ~PCLViewer();
+  virtual ~PCLViewer();
 
- public Q_SLOTS:
-  void randomButtonPressed();
+ private slots:
+  void on_openFolderPushButton_clicked();
 
-  void RGBsliderReleased();
-
-  void pSliderValueChanged(int value);
-
-  void redSliderValueChanged(int value);
-
-  void greenSliderValueChanged(int value);
-
-  void blueSliderValueChanged(int value);
+     void on_fileComboBox_currentTextChanged(const QString &arg1);
 
  protected:
-  void refreshView();
+  void refresh_view();
 
   pcl::visualization::PCLVisualizer::Ptr viewer;
   PointCloudT::Ptr cloud;
-
-  unsigned int red;
-  unsigned int green;
-  unsigned int blue;
-
- private:
   Ui::PCLViewer *ui;
 };

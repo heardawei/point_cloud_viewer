@@ -10,9 +10,6 @@ endif()
 cmake_minimum_required(VERSION 3.5)
 project(point_cloud_viewer VERSION 0.1 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 find_package(PCL CONFIG REQUIRED)
 find_package(Qt6Widgets CONFIG REQUIRED)
 
@@ -24,6 +21,7 @@ set(PROJECT_SOURCES
     main.cpp
     pclviewer.cpp
     pclviewer.h
+    pclviewer.ui
 )
 
 qt_add_executable(point_cloud_viewer
@@ -32,7 +30,7 @@ qt_add_executable(point_cloud_viewer
 )
 
 target_link_libraries(point_cloud_viewer PRIVATE ${PCL_LIBRARIES} Qt6::Widgets)
-
+target_compile_features(point_cloud_viewer PRIVATE cxx_std_20)
 set_target_properties(point_cloud_viewer PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
