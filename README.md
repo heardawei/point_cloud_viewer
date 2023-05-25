@@ -39,7 +39,11 @@ git clone https://github.com/microsoft/vcpkg
 ```bash
 ./vcpkg/vcpkg install pcl[qt] pcl[visualization] --recurse
 ```
-
+如果出现：zsh:no matches found
+解决方式：
+1 进入.zshrc 文件 vim ~/.zshrc
+2.在.zshrc中加入 setopt no_nomatch
+3.更新配置 source ~/.zshrc
 #### Windows
 
 前置条件:
